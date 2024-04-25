@@ -16,8 +16,8 @@ class _CategoriesState extends State<Categories> {
   Widget build(BuildContext context) {
     return Container(
 
-      width: MediaQuery.of(context).size.width * 0.23,
-      height: MediaQuery.of(context).size.height * 0.05,
+      width: MediaQuery.of(context).size.width * 0.24,
+      height: MediaQuery.of(context).size.height * 0.04,
       decoration: BoxDecoration(
         
         borderRadius: BorderRadius.circular(10),
@@ -30,7 +30,7 @@ class _CategoriesState extends State<Categories> {
           Icon(
            widget.img,
             color: appcolor.orange,
-            size: 30,
+            size: 25,
           ), // Icon
           // SizedBox(width: 10), // Add some space between icon and text
           Text(
@@ -38,7 +38,7 @@ class _CategoriesState extends State<Categories> {
             style: GoogleFonts.jost(
               textStyle: TextStyle(
                 color: appcolor.black, // Text color
-                fontSize: 15,
+                fontSize: 14,
                 // fontWeight: FontWeight.w600,
               ),
             ),

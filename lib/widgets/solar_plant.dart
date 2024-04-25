@@ -26,14 +26,14 @@ class _SolarCategoryState extends State<SolarCategory> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 85,
+            height: 80,
           ),
           Text(
             'On Grid Solar Plant',
             style: GoogleFonts.jost(
                 textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 17,
                     fontWeight: FontWeight.w600)),
           )
         ],

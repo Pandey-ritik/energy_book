@@ -27,111 +27,73 @@ class _Home_UiState extends State<Home_Ui> {
   ];
 
   int _currentIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
+ @override
+Widget build(BuildContext context) {
+  return SafeArea(
+    child: Builder(
+      builder: (context) {
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
               image: AssetImage(
                 'assets/images/energy_back.jpeg',
               ),
-              fit: BoxFit.fill),
-        ),
-        child: Scaffold(
-          appBar: _appBar(),
-          drawer: Drawer(child: MyDrawer(),),
-          // bottomNavigationBar:CurvedNavigationBar(
-          //   buttonLabelColor: appcolor.black,
-          //   buttonBackgroundColor: appcolor.orange,
-          //   backgroundColor: Colors.white,color: appcolor.black,
-          //   animationDuration: Duration(milliseconds: 300) ,
-          //   onTap: (index) {
-          //   print(index);
-          // },
-          //   items: <CurvedNavigationBarItem> [
-          //     CurvedNavigationBarItem(icon: Icon(Icons.home,shadows: [Shadow(color: appcolor.black),],), label: 'Home'),
-          //     CurvedNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          //     CurvedNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          //     CurvedNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          //
-          //   ],
-          // ),
-          bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: Colors.white,
-            buttonBackgroundColor: appcolor.orange,
-            buttonLabelColor: appcolor.black,
-            animationDuration: Duration(milliseconds: 100),
-            onTap: (index) {
-              print(index);
-            },
-            items: <CurvedNavigationBarItem>[
-              _buildNavItemWithShadow(
-                  Icons.add_chart_outlined, 'Enquriy', _currentIndex == 1),
-              _buildNavItemWithShadow(
-                  Icons.message_outlined, 'Quotations', _currentIndex == 2),
-              _buildNavItemWithShadow(Icons.home, '', _currentIndex == 0),
-              _buildNavItemWithShadow(Icons.location_on_outlined, 'Site Visits',
-                  _currentIndex == 3),
-              _buildNavItemWithShadow(
-                  Icons.person, 'My Profile', _currentIndex == 4),
-            ],
+              fit: BoxFit.fill,
+            ),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 12,
-                ),
-                _carouselSlider(),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(5.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //     children: [
-                  //       Categories(
-                  //         name: 'Residental',
-                  //         img: Icons.home_outlined,
-                  //       ),
-                  //       Categories(
-                  //         name: 'Commercial',
-                  //         img: Icons.business_outlined,
-                  //       ),
-                  //       Categories(
-                  //         name: 'Residental',
-                  //         img: Icons.factory_outlined,
-                  //       ),
-                  //       Categories(
-                  //         name: 'Agricultural',
-                  //         img: Icons.agriculture_outlined,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+          child: Scaffold(
+            appBar: _appBar(),
+            drawer: Drawer(
+              child: MyDrawer(),
+            ),
+            bottomNavigationBar: CurvedNavigationBar(
+              backgroundColor: Colors.white,
+              buttonBackgroundColor: appcolor.orange,
+              buttonLabelColor: appcolor.black,
+              animationDuration: Duration(milliseconds: 100),
+              onTap: (index) {
+                print(index);
+              },
+              items: <CurvedNavigationBarItem>[
+                _buildNavItemWithShadow(
+                    Icons.add_chart_outlined, 'Enquiry', _currentIndex == 1),
+                _buildNavItemWithShadow(
+                    Icons.message_outlined, 'Quotations', _currentIndex == 2),
+                _buildNavItemWithShadow(
+                    Icons.home, '', _currentIndex == 0), // Adjusted icon and label
+                _buildNavItemWithShadow(
+                    Icons.location_on_outlined, 'Site Visits', _currentIndex == 3),
+                _buildNavItemWithShadow(
+                    Icons.person, 'My Profile', _currentIndex == 4),
+              ],
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 12),
+                  _carouselSlider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 90,
                       width: MediaQuery.of(context).size.width,
-                      // color: Colors.green,
                       child: ListView.builder(
-                          itemCount: 4,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: ((context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Categories(
-                                name: category[index]['title'],
-                                img: category[index]['icon'],
-                              ),
-                            );
-                          })),
+                        itemCount: 4,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Categories(
+                              name: category[index]['title'],
+                              img: category[index]['icon'],
+                            ),
+                          );
+                        }),
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -140,79 +102,65 @@ class _Home_UiState extends State<Home_Ui> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SolarCategory(),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            SolarCategory()
+                            SizedBox(width: 10),
+                            SolarCategory(),
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SolarCategory(),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            SolarCategory()
+                            SizedBox(width: 10),
+                            SolarCategory(),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 6,
-                  ),
-
+                  SizedBox(height: 6),
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
                       'Tools',
                       style: GoogleFonts.jost(
-                          textStyle: TextStyle(
-                              // color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700)),
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
+                  SizedBox(height: 5),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 12.0,
-                        ),
+                        padding: const EdgeInsets.only(left: 12.0),
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.05,
-                          width: MediaQuery.of(context).size.width * 0.43,
+                          width: MediaQuery.of(context).size.width * 0.46,
                           decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10.0)),
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           child: Row(
                             children: [
-                              SizedBox(
-                                width: 3,
-                              ),
+                              SizedBox(width: 3),
                               Icon(
                                 Icons.energy_savings_leaf_outlined,
                                 color: Colors.deepOrangeAccent,
                               ),
-                              SizedBox(
-                                width: 8,
-                              ),
+                              SizedBox(width: 8),
                               Text(
                                 'Energy Generation',
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                        // color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500)),
-                              )
+                                  textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -223,65 +171,65 @@ class _Home_UiState extends State<Home_Ui> {
                           height: MediaQuery.of(context).size.height * 0.05,
                           width: MediaQuery.of(context).size.width * 0.43,
                           decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10.0)),
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           child: Row(
                             children: [
-                              SizedBox(
-                                width: 5,
-                              ),
+                              SizedBox(width: 5),
                               Icon(
                                 Icons.check_circle_outline,
                                 color: Colors.deepOrangeAccent,
                               ),
-                              SizedBox(
-                                width: 8,
-                              ),
+                              SizedBox(width: 8),
                               Text(
                                 'Space Required',
                                 style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                        // color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500)),
-                              )
+                                  textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  SizedBox(height: 15),
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
                       'Our Blogs',
                       style: GoogleFonts.jost(
-                          textStyle: TextStyle(
-                              // color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700)),
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height *0.5,
-                          width: MediaQuery.of(context).size.width*0.99,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.99,
                     child: ListView.builder(
                       itemCount: 5,
                       itemBuilder: (context, index) {
-                      return BlogTile();
-                    }),
-                  )
-                ])
-              ],
+                        return BlogTile();
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
-  }
+        );
+      }
+    ),
+  );
+}
+
 
   CurvedNavigationBarItem _buildNavItemWithShadow(
       IconData icon, String label, bool isSelected) {
@@ -366,7 +314,7 @@ class _Home_UiState extends State<Home_Ui> {
             size: 30,
           ), // Drawer Icon
           onPressed: () {
-            Scaffold.of(context).openDrawer();
+            // Scaffold.of(context).;
             // Add your drawer functionality here
           },
         ),
